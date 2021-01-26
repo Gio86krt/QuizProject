@@ -7,42 +7,42 @@ let timer;
 
 const quizContent = [
   (first = {
-    question: "Who's the best???",
-    1: "Me",
-    2: "You",
-    3: "Everybody",
-    correct: 3,
+    question: "Variables declared with 'var' are:",
+    1: "Function scoped",
+    2: "Block scoped",
+    3: "Global scoped",
+    correct: 1,
     status: true,
   }),
   (second = {
-    question: "What's the capital of Canada",
-    1: "New York",
-    2: "Rome",
-    3: "Ottawa",
+    question: "JavaScript is an extension of Java.",
+    1: "True",
+    2: "They are the same",
+    3: "False",
     correct: 3,
     status: true,
   }),
   (third = {
-    question: "Planet Earth is:",
-    1: "Third from the Sun",
-    2: "First from the Sun",
-    3: "Fifth from the Sun",
+    question: "What's the correct way to declare a variable in JavaScript",
+    1: "var a = 1;",
+    2: "a = 1;",
+    3: "a ==> 1",
     correct: 1,
     status: true,
   }),
   (fourth = {
-    question: "Who invented JavaScript?",
-    1: "Shiva",
-    2: "Luca",
-    3: "Batman",
+    question: "Which is the latest version of JavaScript?",
+    1: "ES5",
+    2: "ES6",
+    3: "ES2000",
     correct: 2,
     status: true,
   }),
   (fifth = {
-    question: "Who founded UofT?",
-    1: "Jordan Peterson",
-    2: "Joe Rogan",
-    3: "The Queen",
+    question: "Which one is a valid for loop",
+    1: "for i=0; (i<n);",
+    2: "for (var i=0; i< num)",
+    3: "for (var i=0; i< num; i++)",
     correct: 3,
     status: true,
   }),
@@ -77,14 +77,11 @@ function checkAnswer(event) {
       document.querySelector(".alert-success").classList.add("d-none");
     }, 700);
     score += time;
-    document.querySelector(".counter").innerHTML = score;
+    document.querySelector(".counter").innerHTML = `Your score: ${score}`;
     document.querySelector(".card" + num).classList.add("d-none");
     console.log(questions);
-    if (questions === quizContent.length) {
-      clearInterval(timer);
-      final();
-      return;
-    } else displayQuestion();
+    if (questions === quizContent.length) final();
+    else displayQuestion();
   } else {
     document.querySelector(".alert-danger").classList.remove("d-none");
     setTimeout(function () {
@@ -98,12 +95,9 @@ function displayTime() {
   let mins = String(Math.trunc(time / 60)).padStart(2, 0);
   let secs = String(time % 60).padStart(2, 0);
   let timeFormat = `${mins}:${secs}`;
-  document.querySelector("#timeDisplay").innerText = timeFormat;
+  document.querySelector("#timeDisplay").innerText = `Time: ${timeFormat}`;
   console.log(time);
-  if (time < 0) {
-    clearInterval(timer);
-    final();
-  }
+  if (time < 0) final();
   time--;
 }
 
@@ -113,6 +107,7 @@ const interval = function () {
 };
 
 function final() {
+  clearInterval(timer);
   document.querySelector("#timeDisplay").classList.add("d-none");
   document.querySelector(".counter").classList.add("d-none");
   document.querySelector(".questionCard").innerHTML = `
@@ -128,11 +123,15 @@ function final() {
 }
 
 function newGame() {
-  document.querySelector(".questionCard").innerHTML = "";
   score = 0;
   questions = 0;
   time = 100;
   num = 0;
+  document.querySelector(".questionCard").innerHTML = "";
+  document.querySelector("#timeDisplay").classList.remove("d-none");
+  document.querySelector(".counter").classList.remove("d-none");
+  document.querySelector(".counter").innerHTML = `Your score: ${score}`;
+
   for (let i = 0; i < quizContent.length; i++) {
     quizContent[i].status = true;
     console.log(quizContent[i].status, i);

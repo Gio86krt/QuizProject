@@ -2,7 +2,7 @@ h1 {
   font-family: fantasy;
   font-size: 55px;
   text-align: center;
-  padding-bottom: 100px;
+  padding-bottom: 80px;
   color: blue;
 }
 
@@ -32,16 +32,18 @@ body {
   text-align: center;
   position: absolute;
   left: 50%;
-  top: 50%;
+  top: 40%;
   margin-left: -250px;
   margin-top: -250px;
 }
 
 .counter {
   font-size: 35px;
+  color: rgb(41, 66, 4);
 }
 
-.timeDisplay {
+#timeDisplay {
   font-size: 40px;
   font-weight: bold;
+  color: orangered;
 }
