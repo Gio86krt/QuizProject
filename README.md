@@ -21,7 +21,7 @@
 
 - A button in the last card calls for the newGame function, that resets all the variables to the initial values, and starts a new game;
 
-[Repository-Link](https://github.com/Gio86krt/QuizProject)
+[Repository-Link](https://github.com/Gio86krt/QuizProject)\
 [Quiz-Link](https://gio86krt.github.io/QuizProject/)
 
 ![Screenshot1](/assets/home.png)

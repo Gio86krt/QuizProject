@@ -65,6 +65,7 @@ function displayQuestion() {
         </ol>
     </div>
     </div>`;
+    document.querySelector(".counter").innerHTML = `Your score: ${score}`;
     questions++;
     quizContent[num].status = false;
   } else displayQuestion();
