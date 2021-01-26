@@ -36,3 +36,12 @@ body {
   margin-left: -250px;
   margin-top: -250px;
 }
+
+.counter {
+  font-size: 35px;
+}
+
+.timeDisplay {
+  font-size: 40px;
+  font-weight: bold;
+}

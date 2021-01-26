@@ -128,6 +128,7 @@ function final() {
 }
 
 function newGame() {
+  document.querySelector(".questionCard").innerHTML = "";
   score = 0;
   questions = 0;
   time = 100;
@@ -136,9 +137,8 @@ function newGame() {
     quizContent[i].status = true;
     console.log(quizContent[i].status, i);
   }
-  document.querySelector(".questionCard").classList.add("d-none");
   displayQuestion();
-  console.log("test");
+  interval();
 }
 
 document.querySelector("#startbtn").addEventListener("click", displayQuestion);
