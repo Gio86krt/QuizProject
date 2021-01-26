@@ -1,42 +1,38 @@
 h1 {
+  font-family: fantasy;
+  font-size: 55px;
   text-align: center;
+  padding-bottom: 100px;
+  color: blue;
 }
 
-/* button {
-  position: absolute;
-  text-align: center;
-  margin-left: 46%;
-  margin-top: 10%;
-} */
-
-#answer1 {
-  position: relative;
-  margin-left: 0;
-}
-#answer2 {
-  position: relative;
-  margin-left: auto;
-}
-#answer3 {
-  position: relative;
-  margin-left: auto;
+button {
+  background-color: green;
+  height: 35px;
 }
 
 li {
+  position: relative;
+  margin-left: auto;
   width: auto;
   background-color: cadetblue;
   margin: 2px;
 }
 
-.card {
+.questionCard {
+  padding: 10px;
+  font-size: 22px;
   position: relative;
-  left: 500px;
-  top: auto;
-  right: auto;
-  padding: 5%;
-  text-align: center;
+  align-self: center;
+  width: auto;
+  left: 15%;
 }
 
-.main {
+body {
   text-align: center;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin-left: -250px;
+  margin-top: -250px;
 }

@@ -1,6 +1,7 @@
 let score = 0;
+const scores = [];
 let num;
-let time = 120;
+let time = 100;
 let questions = 0;
 let timer;
 
@@ -47,17 +48,14 @@ const quizContent = [
   }),
 ];
 
-console.log(quizContent);
-
 function displayQuestion() {
   num = Math.floor(Math.random() * quizContent.length);
-  // console.log(num);
-  // console.log(quizContent[num].question);
   if (quizContent[num].status) {
     const node = document.createElement("div");
     const elem = document.querySelector(".questionCard").appendChild(node);
-    elem.innerHTML = `<div id="card" class="card${num}" style="width: 18rem;">
-    <div class="card-body">
+    elem.innerHTML = `
+    <div id="card" class="card${num}" style="width: 18rem;">
+    <div class="card-body" id="card">
         <h5 class="card-title">Question:</h5>
         <p class="card-text">${quizContent[num].question}</p>
         <ol id="answers-list">
@@ -68,40 +66,44 @@ function displayQuestion() {
     </div>
     </div>`;
     questions++;
-
-    ///call final screen
     quizContent[num].status = false;
   } else displayQuestion();
 }
 
 function checkAnswer(event) {
-  console.log(quizContent[num].correct);
-  console.log(event.target.id);
   if (event.target.id == quizContent[num].correct) {
-    console.log("correct");
+    document.querySelector(".alert-success").classList.remove("d-none");
+    setTimeout(function () {
+      document.querySelector(".alert-success").classList.add("d-none");
+    }, 700);
     score += time;
     document.querySelector(".counter").innerHTML = score;
     document.querySelector(".card" + num).classList.add("d-none");
     console.log(questions);
     if (questions === quizContent.length) {
       clearInterval(timer);
+      final();
       return;
     } else displayQuestion();
-    /////call next question func
   } else {
-    console.log("wrong");
+    document.querySelector(".alert-danger").classList.remove("d-none");
+    setTimeout(function () {
+      document.querySelector(".alert-danger").classList.add("d-none");
+    }, 700);
     time -= 10;
   }
 }
 ////////
 function displayTime() {
-  // if (interval) return;
   let mins = String(Math.trunc(time / 60)).padStart(2, 0);
   let secs = String(time % 60).padStart(2, 0);
   let timeFormat = `${mins}:${secs}`;
   document.querySelector("#timeDisplay").innerText = timeFormat;
   console.log(time);
-  if (time < 0) clearInterval(timer);
+  if (time < 0) {
+    clearInterval(timer);
+    final();
+  }
   time--;
 }
 
@@ -111,7 +113,32 @@ const interval = function () {
 };
 
 function final() {
-  document.querySelector(".questionCard").innerHTML = ``;
+  document.querySelector("#timeDisplay").classList.add("d-none");
+  document.querySelector(".counter").classList.add("d-none");
+  document.querySelector(".questionCard").innerHTML = `
+  <div class="card" id="card">
+  <div class="card-body">
+    <h5 class="card-title">Congratulations!</h5>
+    <p class="card-text">Your highest score is: ${score}</p>
+    <button class="btn btn-primary" onClick="newGame()">Try again</button>
+  </div>
+</div>`;
+  scores.push(score);
+  localStorage.scores = scores;
+}
+
+function newGame() {
+  score = 0;
+  questions = 0;
+  time = 100;
+  num = 0;
+  for (let i = 0; i < quizContent.length; i++) {
+    quizContent[i].status = true;
+    console.log(quizContent[i].status, i);
+  }
+  document.querySelector(".questionCard").classList.add("d-none");
+  displayQuestion();
+  console.log("test");
 }
 
 document.querySelector("#startbtn").addEventListener("click", displayQuestion);
