@@ -1,0 +1,39 @@
+h1 {
+  text-align: center;
+}
+
+/* button {
+  position: absolute;
+  text-align: center;
+  margin-left: 46%;
+  margin-top: 10%;
+} */
+
+#answer1 {
+  position: relative;
+  margin-left: 0;
+}
+#answer2 {
+  position: relative;
+  margin-left: auto;
+}
+#answer3 {
+  position: relative;
+  margin-left: auto;
+}
+
+li {
+  width: auto;
+  background-color: cadetblue;
+  margin: 2px;
+}
+
+.card {
+  margin-left: 250px;
+  padding: 5%;
+  text-align: center;
+}
+
+.main {
+  text-align: center;
+}
