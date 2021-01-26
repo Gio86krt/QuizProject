@@ -29,7 +29,10 @@ li {
 }
 
 .card {
-  margin-left: 250px;
+  position: relative;
+  left: 500px;
+  top: auto;
+  right: auto;
   padding: 5%;
   text-align: center;
 }

@@ -1,7 +1,9 @@
 let score = 0;
 let num;
 let time = 120;
-const fake = document.createElement("ol");
+let questions = 0;
+let timer;
+
 const quizContent = [
   (first = {
     question: "Who's the best???",
@@ -65,6 +67,9 @@ function displayQuestion() {
         </ol>
     </div>
     </div>`;
+    questions++;
+
+    ///call final screen
     quizContent[num].status = false;
   } else displayQuestion();
 }
@@ -77,14 +82,18 @@ function checkAnswer(event) {
     score += time;
     document.querySelector(".counter").innerHTML = score;
     document.querySelector(".card" + num).classList.add("d-none");
-    displayQuestion();
+    console.log(questions);
+    if (questions === quizContent.length) {
+      clearInterval(timer);
+      return;
+    } else displayQuestion();
     /////call next question func
   } else {
     console.log("wrong");
     time -= 10;
   }
 }
-
+////////
 function displayTime() {
   // if (interval) return;
   let mins = String(Math.trunc(time / 60)).padStart(2, 0);
@@ -92,16 +101,17 @@ function displayTime() {
   let timeFormat = `${mins}:${secs}`;
   document.querySelector("#timeDisplay").innerText = timeFormat;
   console.log(time);
+  if (time < 0) clearInterval(timer);
   time--;
 }
 
-const interval = async function () {
+const interval = function () {
   document.querySelector("#startbtn").classList.add("d-none");
-  setInterval(displayTime, 1000);
+  timer = setInterval(displayTime, 1000);
 };
 
-function displayScore() {
-  score;
+function final() {
+  document.querySelector(".questionCard").innerHTML = ``;
 }
 
 document.querySelector("#startbtn").addEventListener("click", displayQuestion);
