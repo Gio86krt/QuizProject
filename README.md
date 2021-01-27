@@ -17,9 +17,11 @@
 
 - If the correct answer is selected the current time (in seconds) gets added to the score, and an alert is shown;
 
-- After all the questions have been shown a final card is displayed, showing the total score;
+- After all the questions have been shown a final card is displayed, showing the total score, an input field to insert the name a save button, and a new game button;
 
-- A button in the last card calls for the newGame function, that resets all the variables to the initial values, and starts a new game;
+- One of the buttons in the last card calls for the newGame function, that resets all the variables to the initial values, and starts a new game;
+
+- The save button reads the name from the input field and stores an array with name and score into the local storage;
 
 [Repository-Link](https://github.com/Gio86krt/QuizProject)\
 [Quiz-Link](https://gio86krt.github.io/QuizProject/)
