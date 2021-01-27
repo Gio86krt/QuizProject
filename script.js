@@ -116,11 +116,11 @@ function final() {
   <div class="card-body">
     <h5 class="card-title">Congratulations!</h5>
     <p class="card-text">Your highest score is: ${score}</p>
+    <input type="text" placeholder="Insert your name here" class="input"></input>
     <button class="btn btn-primary" onClick="newGame()">Try again</button>
+    <button class="btn btn-primary" onClick="saveScore()">Save score</button>
   </div>
 </div>`;
-  scores.push(score);
-  localStorage.scores = scores;
 }
 
 function newGame() {
@@ -139,6 +139,18 @@ function newGame() {
   }
   displayQuestion();
   interval();
+}
+
+function saveScore() {
+  let input = document.querySelector(".input").value;
+  if (input) {
+    scores.push([input, score]);
+    localStorage.scores = scores;
+    document.querySelector("#save").classList.remove("d-none");
+    setTimeout(function () {
+      document.querySelector("#save").classList.add("d-none");
+    }, 1000);
+  } else alert("Please insert your name");
 }
 
 document.querySelector("#startbtn").addEventListener("click", displayQuestion);
